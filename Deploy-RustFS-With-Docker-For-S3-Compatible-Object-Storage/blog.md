@@ -1,6 +1,3 @@
-# Deploy RustFS With Docker For S3 Compatible Object Storage
-
-Hey there, fellow tech enthusiasts!
 Are you looking for a robust, high-performance solution to connect your applications to S3-compatible storage? RustFS is an excellent choice - it's a lightweight, fast filesystem implementation written in Rust that provides seamless integration with S3-compatible object storage services. In this comprehensive guide, I'll walk you through deploying RustFS using Docker. It's straightforward, beginner-friendly, and perfect if you want a quick setup for S3-style bucket storage without the hassle of full-blown cloud providers. Let's get into it!
 
 ## What is RustFS?
@@ -48,12 +45,19 @@ docker run -d --name rustfs --restart=always -p 9000:9000 -p 9001:9001 -v $(pwd)
 
 Breaking it down:
 - `-d`: Runs in detached mode (background).
+
 - `--name rustfs`: Assigns a name to the container.
+
 - `--restart=always`: Restarts the container if it crashes.
+
 - `-p 9000:9000`: Exposes the S3 API port.
+
 - `-p 9001:9001`: Exposes the web console.
+
 - `-v $(pwd)/data:/data`: Mounts your local `data` folder to the container's data path.
+
 - `-v $(pwd)/logs:/logs`: Same for logs.
+
 
 If you prefer a specific version (check the GitHub releases for the latest stable), swap `latest` with something like `1.0.0-alpha.76`.
 
@@ -74,7 +78,9 @@ You should see `rustfs` in the list. If not, peek at logs with `docker logs rust
 Fire up your browser and head to `http://localhost:9001` (or your server's IP if remote).
 
 Default credentials:
+
 - Username: `rustfsadmin`
+
 - Password: `rustfsadmin`
 
 Change these ASAP for security! Once logged in, you can create buckets, upload files, and manage access keys.
@@ -90,10 +96,15 @@ aws configure
 ```
 
 Set:
+
 - Access Key ID: `rustfsadmin`
+
 - Secret Access Key: `rustfsadmin`
+
 - Default region: `us-east-1` (or whatever)
+
 - Output format: `json`
+
 
 Then, create a bucket:
 
@@ -144,6 +155,4 @@ If you run into issues, the RustFS GitHub is active for issues and PRs.
 
 There you have it. A quick, painless way to deploy RustFS with Docker for your own S3-compatible bucket storage. It's a breath of fresh air in the object storage world, blending Rust's safety and speed with the familiarity of S3. I've been playing with it for a side project, and the performance boost is noticeable compared to older alternatives.
 
-~~If you've got questions or tweaks, drop a comment below.~~
-
- Happy storing, and may your buckets always be full (but not overflowing)!
+Happy storing, and may your buckets always be full (but not overflowing)!
